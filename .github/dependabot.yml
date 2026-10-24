@@ -3,11 +3,10 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: weekly
-      day: monday
-      time: "06:00"
-      timezone: America/New_York
-    open-pull-requests-limit: 2
+      interval: "daily"
+      time: "12:00"
+      timezone: "America/New_York"
+    open-pull-requests-limit: 10
     ignore:
       - dependency-name: "marcmy/VideoRenderer*"
     groups:
@@ -17,8 +16,7 @@ updates:
   - package-ecosystem: pip
     directory: /.github
     schedule:
-      interval: weekly
-      day: monday
-      time: "06:00"
-      timezone: America/New_York
-    open-pull-requests-limit: 1
+      interval: "daily"
+      time: "12:00"
+      timezone: "America/New_York"
+    open-pull-requests-limit: 10

@@ -69,7 +69,7 @@ jobs:
           repository: marcmy/VideoRenderer
           ref: a01fae6085d08a76b0b57d74cc4fe49539b2ed76
           persist-credentials: false
-      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
         with:
           python-version: '3.12'
       - run: |

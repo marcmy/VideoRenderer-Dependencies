@@ -71,7 +71,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
         with:
-          python-version: '3.12'
+          python-version: '3.15.1'
       - run: |
           python tools/MaxineRuntimeInstaller/Build-MPCVRMaxineRuntime.py --output component
           curl --fail --location https://developer.nvidia.com/downloads/maxine-sdk-license --output component/Maxine-SDK-License.pdf

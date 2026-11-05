@@ -21,7 +21,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   plan:
-    if: github.repository == 'marcmy/VideoRenderer-Dependencies' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/dependency-source-ffd4c7e1072e645767bb519ffd5d62e858f1a19a-'))
+    if: github.repository == 'marcmy/VideoRenderer-Dependencies' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/dependency-source-1ae99d1de835340cc600e3bd31726498232a9d8d-'))
     runs-on: ubuntu-latest
     outputs:
       needed: ${{ steps.plan.outputs.needed }}
@@ -29,14 +29,14 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: marcmy/VideoRenderer
-          ref: ffd4c7e1072e645767bb519ffd5d62e858f1a19a
+          ref: 1ae99d1de835340cc600e3bd31726498232a9d8d
           fetch-depth: 0
           persist-credentials: false
       - name: Approve requested source before planning or building
         id: source
         env:
           SOURCE_REF: ${{ inputs.source_ref }}
-          APPROVED_SOURCE_REF: ffd4c7e1072e645767bb519ffd5d62e858f1a19a
+          APPROVED_SOURCE_REF: 1ae99d1de835340cc600e3bd31726498232a9d8d
         run: python tools/Dev/dependencies.py approve-source --source-ref "$SOURCE_REF" --approved-ref "$APPROVED_SOURCE_REF"
       - id: plan
         env:
@@ -48,17 +48,17 @@ jobs:
   runtime:
     needs: plan
     if: needs.plan.outputs.needed == 'true' && inputs.component == 'rife-runtime'
-    uses: marcmy/VideoRenderer/.github/workflows/rife-runtime.yml@ffd4c7e1072e645767bb519ffd5d62e858f1a19a
+    uses: marcmy/VideoRenderer/.github/workflows/rife-runtime.yml@1ae99d1de835340cc600e3bd31726498232a9d8d
     with:
       source_repository: marcmy/VideoRenderer
-      source_ref: ffd4c7e1072e645767bb519ffd5d62e858f1a19a
+      source_ref: 1ae99d1de835340cc600e3bd31726498232a9d8d
   models:
     needs: plan
     if: needs.plan.outputs.needed == 'true' && inputs.component == 'rife-models'
-    uses: marcmy/VideoRenderer/.github/workflows/rife-model.yml@ffd4c7e1072e645767bb519ffd5d62e858f1a19a
+    uses: marcmy/VideoRenderer/.github/workflows/rife-model.yml@1ae99d1de835340cc600e3bd31726498232a9d8d
     with:
       source_repository: marcmy/VideoRenderer
-      source_ref: ffd4c7e1072e645767bb519ffd5d62e858f1a19a
+      source_ref: 1ae99d1de835340cc600e3bd31726498232a9d8d
   maxine:
     needs: plan
     if: needs.plan.outputs.needed == 'true' && inputs.component == 'maxine'
@@ -67,7 +67,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: marcmy/VideoRenderer
-          ref: ffd4c7e1072e645767bb519ffd5d62e858f1a19a
+          ref: 1ae99d1de835340cc600e3bd31726498232a9d8d
           persist-credentials: false
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7
         with:
@@ -93,7 +93,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: marcmy/VideoRenderer
-          ref: ffd4c7e1072e645767bb519ffd5d62e858f1a19a
+          ref: 1ae99d1de835340cc600e3bd31726498232a9d8d
           fetch-depth: 0
           persist-credentials: false
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
